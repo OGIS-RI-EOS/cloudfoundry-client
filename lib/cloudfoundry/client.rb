@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'cloudfoundry/client/apps'
 require 'cloudfoundry/client/info'
 require 'cloudfoundry/client/request'
@@ -39,6 +40,7 @@ module CloudFoundry
     # @option options [String] :target_url The CloudFoundry API Target URL.
     # @option options [String] :trace_key The CloudFoundry API Trace Key.
     # @option options [String] :auth_token The CloudFoundry API Authorization Token.
+    # @option options [Boolean] :ssl_verify SSL verification flag.
     # @return [CloudFoundry::Client] A CloudFoundry::Client Object.
     # @raise [CloudFoundry::Client::Exception::BadParams] when target_url is not a valid CloudFoundry API URL.
     # @raise [CloudFoundry::Client::Exception::AuthError] when auth_token is not a valid CloudFoundry API authorization token.
@@ -51,6 +53,7 @@ module CloudFoundry
       @auth_token = options[:auth_token] || nil
       @user = nil
       @proxy_user = nil
+      @ssl_verify = options[:ssl_verify] || true
 
       raise CloudFoundry::Client::Exception::BadParams, "Invalid CloudFoundry API URL: " + @target_url unless valid_target_url?
       if @auth_token

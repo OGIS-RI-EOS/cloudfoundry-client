@@ -51,7 +51,8 @@ module CloudFoundry
       def connection(options = {})
         connection_options = {
           :proxy => @proxy_url,
-          :url => @target_url
+          :url => @target_url,
+          :ssl => {:verify => @ssl_verify}
         }
         connection = Faraday.new(connection_options) do |builder|
           builder.use Faraday::Request::Multipart
