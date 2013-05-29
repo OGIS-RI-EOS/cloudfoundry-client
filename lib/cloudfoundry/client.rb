@@ -53,7 +53,7 @@ module CloudFoundry
       @auth_token = options[:auth_token] || nil
       @user = nil
       @proxy_user = nil
-      @ssl_verify = options[:ssl_verify] || true
+      @ssl_verify = options[:ssl_verify].nil? || options[:ssl_verify]  # default: true
 
       raise CloudFoundry::Client::Exception::BadParams, "Invalid CloudFoundry API URL: " + @target_url unless valid_target_url?
       if @auth_token
