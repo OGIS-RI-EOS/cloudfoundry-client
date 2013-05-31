@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 require 'cloudfoundry/client/apps'
 require 'cloudfoundry/client/info'
 require 'cloudfoundry/client/request'
