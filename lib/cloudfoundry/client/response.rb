@@ -11,7 +11,7 @@ module CloudFoundry
         # @raise [CloudFoundry::Client::Exception::BadResponse] when body can not be parsed.
         def parse(body)
           case body
-            when " " then nil
+            when "", " " then nil
             else JSON.parse(body, :symbolize_names => true, :symbolize_keys => true)
           end
         rescue JSON::ParserError
